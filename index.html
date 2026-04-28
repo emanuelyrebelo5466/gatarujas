@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Gataruja - OO Terminal e Web</title>
+  <style>
+    body {
+      font-family: monospace;
+      background: #111;
+      color: #0f0;
+      padding: 20px;
+    }
+
+    h1, h2 {
+      color: #0f0;
+    }
+
+    pre {
+      background: #000;
+      padding: 10px;
+      border-left: 3px solid #0f0;
+      overflow-x: auto;
+    }
+
+    .box {
+      margin-bottom: 20px;
+    }
+
+    .warning {
+      color: yellow;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🧠 GATARUJA - ORIENTAÇÃO A OBJETOS (CORE / CLI / API)</h1>
+
+<p class="warning">
+⚠ Ideia principal: CORE não sabe se é terminal ou web. CLI e API só usam o CORE.
+</p>
+
+---
+
+<div class="box">
+<h2>📦 CORE.TS (Lógica de Negócio - OO)</h2>
+
+<p>✔ Aqui fica tudo importante do sistema</p>
+<p>✔ Usa classe e this</p>
+<p>❌ NÃO usa console.log, prompt, req, res</p>
+
+<pre>
+export class Sistema {
+  termos: string[];
+
+  constructor() {
+    this.termos = [];
+  }
+
+  adicionar(termo: string) {
+    this.termos.push(termo);
+  }
+
+  listar() {
+    return this.termos;
+  }
+}
+</pre>
+</div>
+
+---
+
+<div class="box">
+<h2>💻 CLI.TS (Terminal)</h2>
+
+<p>✔ Interação com usuário via terminal</p>
+<p>✔ Usa console.log</p>
+<p>✔ Só chama o core</p>
+
+<pre>
+import { Sistema } from "./core";
+
+const sistema = new Sistema();
+
+sistema.adicionar("HTML");
+sistema.adicionar("CSS");
+
+console.log(sistema.listar());
+</pre>
+</div>
+
+---
+
+<div class="box">
+<h2>🌐 API.TS (Backend Web)</h2>
+
+<p>✔ Recebe requisições HTTP</p>
+<p>✔ GET / POST</p>
+<p>✔ Usa req e res</p>
+
+<pre>
+import express from "express";
+import { Sistema } from "./core";
+
+const app = express();
+app.use(express.json());
+
+const sistema = new Sistema();
+
+app.get("/termos", (req, res) => {
+  res.send(sistema.listar());
+});
+
+app.post("/termos", (req, res) => {
+  sistema.adicionar(req.body.termo);
+  res.send("ok");
+});
+
+app.listen(3000);
+</body>
+</html>

@@ -1,7 +1,7 @@
-// ==========================
-// core.ts
-// ==========================
 
+# core.ts
+---
+````typescript
 const jsonFilePath = __dirname + '/data.temp.json'; // Caminho do arquivo JSON onde os dados serão armazenados
 
 const list: string[] = await loadFromFile(); // Carrega a lista do arquivo ao iniciar a aplicação
@@ -89,10 +89,11 @@ export default {
   removeItem
 };
 
-// ==========================
-// api.ts
-// ==========================
-
+````
+---
+# api.ts
+---
+````typescript
 import todo from "./core.ts"; // Importa as funções do sistema de tarefas
 
 
@@ -244,3 +245,5 @@ const server = Bun.serve({
 
 
 console.log(`Server running at http://localhost:${server.port}`); // Exibe mensagem no terminal indicando que o servidor iniciou
+````
+---

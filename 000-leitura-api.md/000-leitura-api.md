@@ -104,9 +104,8 @@ const server = Bun.serve({
   // Rotas da API
   routes: {
 
-    // ==========================
     // ROTA /api/todo
-    // ==========================
+
     "/api/todo": {
 
       // Método GET
@@ -141,9 +140,8 @@ const server = Bun.serve({
     },
 
 
-    // ==========================
     // ROTA /api/todo/:index
-    // ==========================
+
     "/api/todo/:index": {
 
       // Método PUT

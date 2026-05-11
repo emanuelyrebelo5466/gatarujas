@@ -215,9 +215,8 @@ const server = Bun.serve({
   },
 
 
-  // ==========================
   // Servidor de arquivos estáticos
-  // ==========================
+
   async fetch(req) {
 
     const url = new URL(req.url);  // Obtém a URL da requisição
